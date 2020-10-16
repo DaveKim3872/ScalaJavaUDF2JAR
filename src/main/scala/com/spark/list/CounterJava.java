@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
+import static com.spark.list.String2Array.*;
 import scala.Serializable;
 
 public class CounterJava implements Serializable{
@@ -17,11 +18,6 @@ public class CounterJava implements Serializable{
 
     public void add(int it, int v) {
         counts.merge(it, v, Integer::sum);
-    }
-
-    public static int[] stringToIntegerArray(String str) {
-        String[] s1 = str.replaceAll("\\[", "").replaceAll("]", "").split(",");
-        return Arrays.stream(s1).mapToInt(Integer::parseInt).toArray();
     }
 
     public List<Integer> mostCommon(int n) {
