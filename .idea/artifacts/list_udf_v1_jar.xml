@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="list_udf_v1:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/list_udf_v1_jar</output-path>
+    <root id="archive" name="ListCounter.jar">
+      <element id="module-output" name="ListCounter" />
+    </root>
+  </artifact>
+</component>
