@@ -10,17 +10,17 @@ import static com.spark.list.String2Array.*;
 import scala.Serializable;
 
 public class CounterJava implements Serializable{
-    final ConcurrentMap<Integer, Integer> counts = new ConcurrentHashMap<>();
+    final ConcurrentMap<Double, Integer> counts = new ConcurrentHashMap<>();
 
-    public void put(int it) {
+    public void put(double it) {
         add(it, 1);
     }
 
-    public void add(int it, int v) {
+    public void add(double it, int v) {
         counts.merge(it, v, Integer::sum);
     }
 
-    public List<Integer> mostCommon(int n) {
+    public List<Double> mostCommon(int n) {
         return counts.entrySet().stream()
                 // Sort by value.
                 .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
@@ -32,20 +32,20 @@ public class CounterJava implements Serializable{
                 .collect(Collectors.toList());
     }
 
-    public ConcurrentMap<Integer, Integer> getCounts() {
+    public ConcurrentMap<Double, Integer> getCounts() {
         return counts;
     }
 
-    public Map<Integer, Integer> getSortedMaps() {
+    public Map<Double, Integer> getSortedMaps() {
         return counts.entrySet().stream()
                 .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
                 .collect(Collectors.toConcurrentMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public Map<Integer, Integer> countIntList(String list_str) {
-        int[] l = stringToIntegerArray(list_str);
+    public Map<Double, Integer> countIntList(String list_str) {
+        double[] l = stringToDoubleArray(list_str);
         CounterJava c = new CounterJava();
-        for (int j : l) {
+        for (double j : l) {
             c.put(j);
         }
         return c.getSortedMaps();
