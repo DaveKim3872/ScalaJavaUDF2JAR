@@ -1,5 +1,6 @@
 package com.spark.list;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +43,10 @@ public class CounterJava implements Serializable{
                 .collect(Collectors.toConcurrentMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public Map<Double, Integer> countIntList(String list_str) {
-        double[] l = stringToDoubleArray(list_str);
+    public Map<Double, Integer> countIntList(List<Double> list_str) {
+//        double[] l = stringToDoubleArray(list_str);
         CounterJava c = new CounterJava();
-        for (double j : l) {
+        for (double j : list_str) {
             c.put(j);
         }
         return c.getSortedMaps();
